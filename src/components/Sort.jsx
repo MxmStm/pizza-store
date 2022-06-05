@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 
-
 export const Sort = () => {
     const [isVisible, setIsVisible] = useState(false)
     const [selected, setSelected] = useState(0)

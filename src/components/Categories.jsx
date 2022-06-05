@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 
-
 export const Categories = () => {
     const [activeIndex, setActiveIndex] = useState(0)
     const categories = [
