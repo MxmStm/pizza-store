@@ -10,8 +10,8 @@ export const Header = () => {
                 <div className="header__logo">
                     <img width="38" src={pizzaSvg} alt="Pizza logo"/>
                     <div>
-                        <h1>React Pizza</h1>
-                        <p>самая вкусная пицца во вселенной</p>
+                        <h1>Pizza</h1>
+                        <p>Самая вкусная пицца</p>
                     </div>
                 </div>
                 <div className="header__cart">
