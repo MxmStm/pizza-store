@@ -6,7 +6,7 @@ export const Header = () => {
     return (
         <div className="header">
             <div className="container">
-                <Link to={'/pizza-store'}>
+                <Link to={'/'}>
                     <div className="header__logo">
                         <img width="38" src={pizzaSvg} alt="Pizza logo"/>
                         <div>
