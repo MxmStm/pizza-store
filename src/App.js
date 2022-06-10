@@ -1,10 +1,10 @@
+import {Routes, Route, Navigate} from "react-router-dom";
+import {useState} from "react";
 import './scss/app.scss';
 import {Header} from "./components/Header";
 import {Home} from "./pages/Home";
 import {Cart} from "./pages/Cart";
 import {NotFound} from "./pages/NotFound";
-import {Routes, Route, Navigate} from "react-router-dom";
-import {useState} from "react";
 
 function App() {
     const [searchValue, setSearchValue] = useState('')
