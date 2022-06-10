@@ -1,7 +1,26 @@
-import React from 'react';
+import React, {useCallback, useRef, useState} from 'react';
+import debounce from 'lodash.debounce'
 import s from './Search.module.scss'
 
-export const Search = ({searchValue, setSearchValue}) => {
+export const Search = ({setSearchValue}) => {
+    const [valueInput, setValueInput] = useState('')
+    const inputRef = useRef()
+
+    const onClickClear = () => {
+        setSearchValue('')
+        setValueInput('')
+        inputRef.current.focus()
+    }
+    const updateSearchValue = useCallback(
+        debounce((value) => {
+            setSearchValue(value)
+        }, 500), []
+    )
+    const onChangeInput = (event) => {
+        setValueInput(event.target.value)
+        updateSearchValue(event.target.value)
+    }
+
     return (
         <div className={s.root}>
             <svg className={s.icon}
@@ -12,20 +31,23 @@ export const Search = ({searchValue, setSearchValue}) => {
                     id="XMLID_223_"/>
             </svg>
             <input
-                value={searchValue}
+                ref={inputRef}
+                value={valueInput}
                 className={s.input}
                 placeholder={'Поиск пиццы...'}
-                onChange={(event) => setSearchValue(event.target.value)}
+                onChange={onChangeInput}
             />
-            {searchValue && (<svg
-                className={s.clearIcon}
-                onClick={() => setSearchValue('')}
-                height="512px" id="Layer_1" version="1.1" viewBox="0 0 512 512"
-                width="512px" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"
-                />
-            </svg>)}
+            {valueInput && (
+                <svg
+                    className={s.clearIcon}
+                    onClick={onClickClear}
+                    height="512px" id="Layer_1" version="1.1" viewBox="0 0 512 512"
+                    width="512px" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"
+                    />
+                </svg>)
+            }
         </div>
     );
 };

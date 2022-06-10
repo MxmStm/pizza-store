@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Categories = ({value, onClickCategory}) => {
+export const Categories = ({categoryId, onClickCategory}) => {
     const categories = [
         'Все',
         'Мясные',
@@ -16,7 +16,7 @@ export const Categories = ({value, onClickCategory}) => {
                 {categories.map((category, index) => (
                     <li
                         key={category}
-                        className={value === index ? 'active' : ''}
+                        className={categoryId === index ? 'active' : ''}
                         onClick={() => onClickCategory(index)}>
                         {category}
                     </li>

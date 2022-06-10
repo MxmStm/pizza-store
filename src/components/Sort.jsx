@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-export const Sort = ({value, onClickSort}) => {
+export const Sort = ({valueSort, onClickSort}) => {
     const [isVisible, setIsVisible] = useState(false)
     const sortList = [
         {name: 'популярности', sortProperty: 'rating'},
@@ -25,7 +25,7 @@ export const Sort = ({value, onClickSort}) => {
                 </svg>
                 <b>Сортировка по:</b>
                 <span onClick={() => setIsVisible(!isVisible)}>
-                    {value.name}
+                    {valueSort.name}
                 </span>
             </div>
             {isVisible && (
@@ -34,7 +34,7 @@ export const Sort = ({value, onClickSort}) => {
                         {sortList.map((obj, index) => (
                             <li
                                 key={index}
-                                className={value.sortProperty === obj.sortProperty ? 'active' : ''}
+                                className={valueSort.sortProperty === obj.sortProperty ? 'active' : ''}
                                 onClick={() => onClickListItem(obj)}>
                                 {obj.name}
                             </li>
