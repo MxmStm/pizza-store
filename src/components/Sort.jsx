@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 
+export const sortList = [
+    {name: 'популярности', sortProperty: 'rating'},
+    {name: 'цене', sortProperty: 'price'},
+    {name: 'алфавиту', sortProperty: 'title'}
+]
+
 export const Sort = ({valueSort, onClickSort}) => {
     const [isVisible, setIsVisible] = useState(false)
-    const sortList = [
-        {name: 'популярности', sortProperty: 'rating'},
-        {name: 'цене', sortProperty: 'price'},
-        {name: 'алфавиту', sortProperty: 'title'}
-    ]
 
     const onClickListItem = (indexSortList) => {
         onClickSort(indexSortList)
