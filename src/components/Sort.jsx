@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 export const sortList = [
     {name: 'популярности', sortProperty: 'rating'},
@@ -9,13 +9,27 @@ export const sortList = [
 export const Sort = ({valueSort, onClickSort}) => {
     const [isVisible, setIsVisible] = useState(false)
 
+    const sortRef = useRef()
+
     const onClickListItem = (indexSortList) => {
         onClickSort(indexSortList)
         setIsVisible(false)
     }
 
+    //скрытие pop-up окна
+    useEffect(() => {
+        const handleClick = (event) => {
+            if (!event.path.includes(sortRef.current)) {
+                setIsVisible(false)
+            }
+        }
+        document.body.addEventListener('click', handleClick)
+
+        return () => document.body.removeEventListener('click', handleClick)
+    }, [])
+
     return (
-        <div className="sort">
+        <div ref={sortRef} className="sort">
             <div className="sort__label">
                 <svg width="10" height="6" viewBox="0 0 10 6"
                      fill="none" xmlns="http://www.w3.org/2000/svg">
