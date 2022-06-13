@@ -8,24 +8,20 @@ import {sortList} from "../components/Sort";
 import {Skeleton} from "../components/PizzaBlock/Skeleton";
 import {PizzaBlock} from "../components/PizzaBlock/PizzaBlock";
 import {Pagination} from "../components/Pagination/Pagination";
-import {setCategoryId, setCurrentPage, setFilters, setSort} from "../redux/slices/filterSlice";
-import {fetchPizzas} from "../redux/slices/pizzaSlice";
+import {selectFilter, setCategoryId, setCurrentPage, setFilters} from "../redux/slices/filterSlice";
+import {fetchPizzas, selectPizzaData} from "../redux/slices/pizzaSlice";
 
-export const Home = ({searchValue}) => {
+export const Home = () => {
     const navigate = useNavigate()
     const isSearch = useRef(false)
     const isMounted = useRef(false)
-    const {categoryId, sort, currentPage} = useSelector(state =>
-        state.filter)
-    const {pizzas, status} = useSelector(state => state.pizza)
+    const {categoryId, sort, currentPage, searchValue} = useSelector(selectFilter)
+    const {pizzas, status} = useSelector(selectPizzaData)
     const dispatch = useDispatch()
 
     const onClickCategory = useCallback((id) => {
         dispatch(setCategoryId(id))
     }, [])
-    const onClickSort = (id) => {
-        dispatch(setSort(id))
-    }
     const onClickPage = (page) => {
         dispatch(setCurrentPage(page))
     }
@@ -85,7 +81,7 @@ export const Home = ({searchValue}) => {
                     categoryId={categoryId}
                     onClickCategory={onClickCategory}
                 />
-                <Sort valueSort={sort} onClickSort={onClickSort}/>
+                <Sort/>
             </div>
             <h2 className="content__title">Все пиццы</h2>
             {status === 'error' ? (

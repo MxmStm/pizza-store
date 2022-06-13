@@ -2,11 +2,11 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {CartItem} from "../components/CartItem";
-import {clearCart} from "../redux/slices/cartSlice";
+import {clearCart, selectCart} from "../redux/slices/cartSlice";
 import {CartEmpty} from "../components/CartEmpty";
 
 export const Cart = () => {
-    const {totalPrice, products} = useSelector(state => state.cart)
+    const {totalPrice, products} = useSelector(selectCart)
     const dispatch = useDispatch()
     const totalCount = products.reduce((sum, product) => sum + product.count, 0)
 

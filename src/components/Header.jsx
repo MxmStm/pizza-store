@@ -3,9 +3,10 @@ import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import pizzaSvg from '../assets/images/pizza-logo.svg';
 import {Search} from "./Search/Search";
+import {selectCart} from "../redux/slices/cartSlice";
 
-export const Header = ({setSearchValue}) => {
-    const {totalPrice, products} = useSelector(state => state.cart)
+export const Header = () => {
+    const {totalPrice, products} = useSelector(selectCart)
     const totalCount = products.reduce((sum, product) => sum + product.count, 0)
 
     return (
@@ -20,7 +21,7 @@ export const Header = ({setSearchValue}) => {
                         </div>
                     </div>
                 </Link>
-                <Search setSearchValue={setSearchValue}/>
+                <Search/>
                 <div className="header__cart">
                     <Link to={'/cart'} className="button button--cart">
                         <span>{totalPrice} руб.</span>
