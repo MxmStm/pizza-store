@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import s from './FullPizza.module.scss'
 
 export const FullPizza = () => {
     const [pizza, setPizza] = useState()
@@ -26,10 +27,10 @@ export const FullPizza = () => {
     }
 
     return (
-        <div className="container">
+        <div className={s.container}>
             <img src={pizza.imageUrl} alt="Pizza"/>
             <h2>{pizza.title}</h2>
-            <h4>{pizza.price} руб.</h4>
+            <h4>от {pizza.price} руб.</h4>
         </div>
     );
 };

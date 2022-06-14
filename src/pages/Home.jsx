@@ -68,9 +68,7 @@ export const Home = () => {
     }, [categoryId, sort.sortProperty, currentPage, searchValue])
 
     const pizzasList = pizzas.map(pizza =>
-        <Link key={pizza.id} to={`/pizza/${pizza.id}`}>
-            <PizzaBlock {...pizza}/>
-        </Link>)
+        <PizzaBlock key={pizza.id} {...pizza}/>)
     const skeletons = [...new Array(8)].map((_, index) =>
         <Skeleton key={index}/>)
 
