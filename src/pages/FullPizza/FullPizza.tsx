@@ -4,7 +4,11 @@ import axios from "axios";
 import s from './FullPizza.module.scss'
 
 export const FullPizza = () => {
-    const [pizza, setPizza] = useState()
+    const [pizza, setPizza] = useState<{
+        imageUrl: string
+        title: string
+        price: number
+    }>()
     const {id} = useParams()
     const navigate = useNavigate()
 
@@ -23,7 +27,7 @@ export const FullPizza = () => {
     }, [])
 
     if (!pizza) {
-        return 'Loading...'
+        return <>'Loading...'</>
     }
 
     return (

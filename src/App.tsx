@@ -3,7 +3,7 @@ import './scss/app.scss';
 import {Home} from "./pages/Home";
 import {Cart} from "./pages/Cart";
 import {NotFound} from "./pages/NotFound";
-import {FullPizza} from "./pages/FullPizza";
+import {FullPizza} from "./pages/FullPizza/FullPizza";
 import {MainLayout} from "./layouts/MainLayout";
 
 function App() {
