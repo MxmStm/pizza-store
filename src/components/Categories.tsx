@@ -1,7 +1,13 @@
 import React from 'react';
 
-export const Categories = ({categoryId, onClickCategory}) => {
-    const categories = [
+type CategoriesPropsType = {
+    categoryId: number
+    onClickCategory: (id: number) => void
+}
+type CategoriesType = string[]
+
+export const Categories = ({categoryId, onClickCategory}: CategoriesPropsType) => {
+    const categories: CategoriesType = [
         'Все',
         'Мясные',
         'Вегетарианская',

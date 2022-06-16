@@ -8,7 +8,8 @@ import {CartEmpty} from "../components/CartEmpty";
 export const Cart = () => {
     const {totalPrice, products} = useSelector(selectCart)
     const dispatch = useDispatch()
-    const totalCount = products.reduce((sum, product) => sum + product.count, 0)
+    const totalCount = products.reduce((sum: number, product: any) =>
+        sum + product.count, 0)
 
     const onClearCart = () => {
         if (window.confirm('Очистить корзину?')) {
@@ -57,7 +58,7 @@ export const Cart = () => {
                     </div>
                 </div>
                 <div className="content__items">
-                    {products.map(product => <CartItem key={product.id} {...product}/>)}
+                    {products.map((product: any) => <CartItem key={product.id} {...product}/>)}
                 </div>
                 <div className="cart__bottom">
                     <div className="cart__bottom-details">

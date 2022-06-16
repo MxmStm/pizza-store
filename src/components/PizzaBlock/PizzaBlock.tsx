@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {addProduct, selectItemCartById} from "../../redux/slices/cartSlice";
+import {addProduct, CartItemType, selectItemCartById} from "../../redux/slices/cartSlice";
 import {Link} from "react-router-dom";
+import {PizzaType} from "../../redux/slices/pizzaSlice";
 
-const typesName = ['традиционное', 'тонкое']
+const typesName: string[] = ['традиционное', 'тонкое']
 
-export const PizzaBlock = ({id, title, price, imageUrl, sizes, types}) => {
+export const PizzaBlock = (
+    {id, title, price, imageUrl, sizes, types}: PizzaType) => {
+
     const [activeType, setActiveType] = useState(0)
     const [activeSize, setActiveSize] = useState(0)
 
@@ -14,13 +17,14 @@ export const PizzaBlock = ({id, title, price, imageUrl, sizes, types}) => {
     const dispatch = useDispatch()
 
     const onClickAdd = () => {
-        const product = {
+        const product: CartItemType = {
             id,
             title,
             price,
             imageUrl,
             type: typesName[activeType],
             size: sizes[activeSize],
+            count: 0,
         }
         dispatch(addProduct(product))
     }
@@ -34,8 +38,8 @@ export const PizzaBlock = ({id, title, price, imageUrl, sizes, types}) => {
                         src={imageUrl}
                         alt="Pizza"
                     />
+                    <h4 className="pizza-block__title">{title}</h4>
                 </Link>
-                <h4 className="pizza-block__title">{title}</h4>
                 <div className="pizza-block__selector">
                     <ul>
                         {types.map((type, index) => (

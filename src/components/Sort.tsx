@@ -1,31 +1,34 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {selectSort, setSort} from "../redux/slices/filterSlice";
+import {selectSort, setSort, SortPropertyEnum, SortType} from "../redux/slices/filterSlice";
 
-export const sortList = [
-    {name: 'популярности', sortProperty: 'rating'},
-    {name: 'цене', sortProperty: 'price'},
-    {name: 'алфавиту', sortProperty: 'title'}
+type PopupClickType = MouseEvent & {
+    path: Node[];
+}
+
+export const sortList: SortType[] = [
+    {name: 'популярности', sortProperty: SortPropertyEnum.RATING},
+    {name: 'цене', sortProperty: SortPropertyEnum.PRICE},
+    {name: 'алфавиту', sortProperty: SortPropertyEnum.TITLE}
 ]
 
 export const Sort = () => {
     const [isVisible, setIsVisible] = useState(false)
     const valueSort = useSelector(selectSort)
     const dispatch = useDispatch()
-    const sortRef = useRef()
+    const sortRef = useRef<HTMLDivElement>(null)
 
-    const onClickSort = (id) => {
-        dispatch(setSort(id))
-    }
-    const onClickListItem = (indexSortList) => {
-        onClickSort(indexSortList)
+    const onClickListItem = (indexSortList: SortType) => {
+        dispatch(setSort(indexSortList))
         setIsVisible(false)
     }
 
     //скрытие pop-up окна
     useEffect(() => {
-        const handleClick = (event) => {
-            if (!event.path.includes(sortRef.current)) {
+        const handleClick = (event: MouseEvent) => {
+            const _event = event as PopupClickType
+
+            if (sortRef.current && !_event.path.includes(sortRef.current)) {
                 setIsVisible(false)
             }
         }
