@@ -90,7 +90,7 @@ export const Home = () => {
                     categoryId={categoryId}
                     onClickCategory={onClickCategory}
                 />
-                <Sort/>
+                <Sort valueSort={sort}/>
             </div>
             <h2 className="content__title">Все пиццы</h2>
             {status === 'error' ? (

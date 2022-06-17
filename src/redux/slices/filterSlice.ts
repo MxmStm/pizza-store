@@ -54,7 +54,6 @@ export const filterSlice = createSlice({
 })
 
 export const selectFilter = (state: RootStateType) => state.filter
-export const selectSort = (state: RootStateType) => state.filter.sort
 
 export const {setSearchValue, setCategoryId, setSort, setCurrentPage, setFilters} = filterSlice.actions
 

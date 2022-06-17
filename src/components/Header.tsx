@@ -1,14 +1,26 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Link, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 import pizzaSvg from '../assets/images/pizza-logo.svg';
 import {Search} from "./Search/Search";
-import {selectCart} from "../redux/slices/cartSlice";
+import {CartItemType, selectCart} from "../redux/slices/cartSlice";
 
 export const Header = () => {
     const location = useLocation()
+    const isMounted = useRef(false)
     const {totalPrice, products} = useSelector(selectCart)
-    const totalCount = products.reduce((sum: number, product: any) => sum + product.count, 0)
+    const totalCount = products.reduce((sum: number, product: CartItemType) => sum + product.count, 0)
+
+    //сохраняем пиццы из корзины в localStorage
+    useEffect(() => {
+        //при первом рендере пустой массив не сохраняем
+        //сохраняем после добавления товара
+        if (isMounted.current) {
+            const json = JSON.stringify(products)
+            localStorage.setItem('cart', json)
+        }
+        isMounted.current = true
+    }, [products])
 
     return (
         <div className="header">
@@ -22,6 +34,7 @@ export const Header = () => {
                         </div>
                     </div>
                 </Link>
+
                 {/*если находимся в корзине, то поиск пицц отсутствует*/}
                 {location.pathname !== '/cart' && <Search/>}
                 <div className="header__cart">

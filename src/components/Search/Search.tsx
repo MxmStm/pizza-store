@@ -15,7 +15,7 @@ export const Search = () => {
         inputRef.current?.focus()
     }
     const updateSearchValue = useCallback(
-        debounce((value) => {
+        debounce((value: string) => {
             dispatch(setSearchValue(value))
         }, 500), []
     )
