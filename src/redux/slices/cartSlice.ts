@@ -41,7 +41,7 @@ export const cartSlice = createSlice({
         },
         minusItem: (state, action: PayloadAction<string>) => {
             const findProduct = state.products.find(product => product.id === action.payload)
-            if (findProduct && findProduct.count > 0) {
+            if (findProduct) {
                 findProduct.count--
                 state.totalPrice -= findProduct.price
             }

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {memo, useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {selectSort, setSort, SortPropertyEnum, SortType} from "../redux/slices/filterSlice";
 
@@ -12,7 +12,7 @@ export const sortList: SortType[] = [
     {name: 'алфавиту', sortProperty: SortPropertyEnum.TITLE}
 ]
 
-export const Sort = () => {
+export const Sort = memo(() => {
     const [isVisible, setIsVisible] = useState(false)
     const valueSort = useSelector(selectSort)
     const dispatch = useDispatch()
@@ -68,4 +68,4 @@ export const Sort = () => {
             )}
         </div>
     )
-}
+})

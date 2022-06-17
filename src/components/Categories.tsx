@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 
 type CategoriesPropsType = {
     categoryId: number
@@ -6,7 +6,7 @@ type CategoriesPropsType = {
 }
 type CategoriesType = string[]
 
-export const Categories = ({categoryId, onClickCategory}: CategoriesPropsType) => {
+export const Categories = memo(({categoryId, onClickCategory}: CategoriesPropsType) => {
     const categories: CategoriesType = [
         'Все',
         'Мясные',
@@ -30,4 +30,4 @@ export const Categories = ({categoryId, onClickCategory}: CategoriesPropsType) =
             </ul>
         </div>
     )
-}
+})
