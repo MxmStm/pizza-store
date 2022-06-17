@@ -1,6 +1,6 @@
 import React, {memo, useEffect, useRef, useState} from 'react';
 import {useDispatch} from "react-redux";
-import {setSort, SortPropertyEnum, SortType} from "../redux/slices/filterSlice";
+import {setSort, SortPropertyEnum, SortType} from "../redux/filter/filterSlice";
 
 type PopupClickType = MouseEvent & {
     path: Node[];

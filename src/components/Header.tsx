@@ -3,7 +3,7 @@ import {Link, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 import pizzaSvg from '../assets/images/pizza-logo.svg';
 import {Search} from "./Search/Search";
-import {CartItemType, selectCart} from "../redux/slices/cartSlice";
+import {CartItemType, selectCart} from "../redux/cart/cartSlice";
 
 export const Header = () => {
     const location = useLocation()

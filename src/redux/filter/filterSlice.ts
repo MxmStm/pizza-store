@@ -45,16 +45,11 @@ export const filterSlice = createSlice({
         setCurrentPage: (state, action: PayloadAction<number>) => {
             state.currentPage = action.payload
         },
-        setFilters: (state, action: PayloadAction<FilterStateType>) => {
-            state.currentPage = Number(action.payload.currentPage)
-            state.sort = action.payload.sort
-            state.categoryId = Number(action.payload.categoryId)
-        },
     },
 })
 
 export const selectFilter = (state: RootStateType) => state.filter
 
-export const {setSearchValue, setCategoryId, setSort, setCurrentPage, setFilters} = filterSlice.actions
+export const {setSearchValue, setCategoryId, setSort, setCurrentPage} = filterSlice.actions
 
 export default filterSlice.reducer

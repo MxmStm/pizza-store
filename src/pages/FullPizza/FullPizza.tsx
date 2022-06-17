@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import s from './FullPizza.module.scss'
 
@@ -35,6 +35,11 @@ export const FullPizza = () => {
             <img src={pizza.imageUrl} alt="Pizza"/>
             <h2>{pizza.title}</h2>
             <h4>от {pizza.price} руб.</h4>
+            <Link to="/">
+                <button className="button button--outline button--add">
+                    <span>Назад</span>
+                </button>
+            </Link>
         </div>
     );
 };
