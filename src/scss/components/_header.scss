@@ -9,11 +9,11 @@
     align-items: center;
     justify-content: space-between;
 
-    @media (max-width: 540px) {
+    @media (max-width: 870px) {
       flex-direction: column;
 
       .header__cart {
-        margin-top: 20px;
+        margin-top: 10px;
       }
     }
   }
@@ -28,13 +28,14 @@
     h1 {
       color: #181818;
       font-size: 24px;
-      letter-spacing: 1%;
+      letter-spacing: 1px;
       text-transform: uppercase;
       font-weight: 800;
     }
 
     p {
       color: #7b7b7b;
+      margin-bottom: 5px;
     }
   }
 }

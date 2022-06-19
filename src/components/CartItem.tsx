@@ -13,7 +13,7 @@ export const CartItem = (
         dispatch(minusItem(id))
     }
     const onClickRemove = () => {
-        if (window.confirm('Уверен, что хочешь удалить?')) {
+        if (window.confirm('Удалить из корзины?')) {
             dispatch(removeProduct(id))
         }
     }
